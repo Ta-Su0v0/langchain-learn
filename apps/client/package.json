@@ -1,0 +1,33 @@
+{
+  "name": "@lcl/client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "bunx tsc -b --pretty false && vite build",
+    "preview": "vite preview",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@lcl/types": "workspace:*",
+    "@lcl/ui": "workspace:*",
+    "@lcl/utils": "workspace:*",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@rolldown/plugin-babel": "^0.2.1",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "jsdom": "^29.0.1",
+    "tailwindcss": "^4.2.2",
+    "vite": "^8.0.3",
+    "vitest": "^4.1.2"
+  }
+}

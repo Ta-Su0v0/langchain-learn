@@ -1,0 +1,33 @@
+{
+    "$schema": "./node_modules/oxfmt/configuration_schema.json",
+
+    // Keep the first rollout close to the repo's existing TS/React style.
+    // On Bun 1.3.x, `oxfmt` is stable on code files first; non-code assets/configs
+    // can be added back in a later phase once runtime support is solid.
+    "printWidth": 100,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": false,
+    "trailingComma": "all",
+    "quoteProps": "as-needed",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "endOfLine": "lf",
+    "sortPackageJson": false,
+
+    "ignorePatterns": [
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.turbo/**",
+        "**/.vite/**",
+        "**/coverage/**",
+        "**/*.css",
+        "**/*.html",
+        "**/*.json",
+        "**/*.jsonc",
+        "**/*.md",
+    ],
+}

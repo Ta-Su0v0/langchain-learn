@@ -1,0 +1,137 @@
+{
+    "languages": {
+        "HTML": {
+            "format_on_save": "on",
+            "prettier": {
+                "allowed": false
+            },
+            "formatter": [
+                {
+                    "language_server": {
+                        "name": "oxfmt"
+                    }
+                }
+            ]
+        },
+        "CSS": {
+            "format_on_save": "on",
+            "prettier": {
+                "allowed": false
+            },
+            "formatter": [
+                {
+                    "language_server": {
+                        "name": "oxfmt"
+                    }
+                }
+            ]
+        },
+        "JavaScript": {
+            "format_on_save": "on",
+            "prettier": {
+                "allowed": false
+            },
+            "formatter": [
+                {
+                    "code_action": "source.fixAll.oxc"
+                },
+                {
+                    "language_server": {
+                        "name": "oxfmt"
+                    }
+                }
+            ]
+        },
+        "TypeScript": {
+            "format_on_save": "on",
+            "prettier": {
+                "allowed": false
+            },
+            "formatter": [
+                {
+                    "language_server": {
+                        "name": "oxfmt"
+                    }
+                }
+            ]
+        },
+        "TSX": {
+            "format_on_save": "on",
+            "prettier": {
+                "allowed": false
+            },
+            "formatter": [
+                {
+                    "language_server": {
+                        "name": "oxfmt"
+                    }
+                }
+            ]
+        },
+        "Vue.js": {
+            "format_on_save": "on",
+            "prettier": {
+                "allowed": false
+            },
+            "formatter": [
+                {
+                    "language_server": {
+                        "name": "oxfmt"
+                    }
+                }
+            ]
+        },
+        "YAML": {
+            "format_on_save": "on",
+            "prettier": {
+                "allowed": false
+            },
+            "formatter": [
+                {
+                    "language_server": {
+                        "name": "oxfmt"
+                    }
+                }
+            ]
+        }
+    },
+    "lsp": {
+        "oxlint": {
+            "initialization_options": {
+                "settings": {
+                    "configPath": "./.oxlintrc.json",
+                    "run": "onType",
+                    "disableNestedConfig": false,
+                    "fixKind": "safe_fix",
+                    "typeAware": true,
+                    "unusedDisableDirectives": "deny"
+                }
+            }
+        },
+        "oxfmt": {
+            "initialization_options": {
+                "settings": {
+                    "configPath": "./vite.config.ts",
+                    "run": "onSave"
+                }
+            }
+        },
+        "tailwindcss-language-server": {
+            "settings": {
+                "experimental": {
+                    "classRegex": [
+                        "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]",
+                        "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+                        "\\.setAttribute\\(['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.add\\(['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.remove\\(['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.toggle\\(['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.contains\\(['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.replace\\(\\s*['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.replace\\([^,)]+,\\s*['\"]([^'\"]*)['\"]"
+                    ]
+                }
+            }
+        }
+    }
+}

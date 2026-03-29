@@ -1,0 +1,73 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+        "correctness": "error",
+        "suspicious": "error",
+        "perf": "error"
+    },
+    "ignorePatterns": [
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.turbo/**",
+        "**/.vite/**",
+        "**/coverage/**"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "apps/**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}",
+                "packages/**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}",
+                "tools/**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}"
+            ],
+            "plugins": ["eslint", "typescript", "unicorn", "oxc"]
+        },
+        {
+            "files": [
+                "apps/server/**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}",
+                "apps/*/*.{js,cjs,mjs,ts,cts,mts}",
+                "packages/*/*.{js,cjs,mjs,ts,cts,mts}",
+                "tools/**/*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}"
+            ],
+            "env": {
+                "node": true
+            },
+            "globals": {
+                "Bun": "readonly"
+            }
+        },
+        {
+            "files": [
+                "apps/client/src/**/*.{js,jsx,ts,tsx}",
+                "packages/ui/**/*.{js,jsx,ts,tsx}"
+            ],
+            "plugins": ["eslint", "typescript", "unicorn", "oxc", "react"],
+            "env": {
+                "browser": true
+            },
+            "rules": {
+                "react/react-in-jsx-scope": "off"
+            }
+        },
+        {
+            "files": [
+                "**/test/**/*",
+                "**/tests/**/*",
+                "**/__tests__/**/*",
+                "**/*.test.{js,jsx,ts,tsx}",
+                "**/*.spec.{js,jsx,ts,tsx}"
+            ],
+            "globals": {
+                "afterAll": "readonly",
+                "afterEach": "readonly",
+                "beforeAll": "readonly",
+                "beforeEach": "readonly",
+                "describe": "readonly",
+                "expect": "readonly",
+                "it": "readonly",
+                "test": "readonly",
+                "vi": "readonly"
+            }
+        }
+    ]
+}

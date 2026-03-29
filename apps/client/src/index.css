@@ -1,0 +1,104 @@
+/**
+ * Global CSS — TailwindCSS v4 + Google Material Design 3 design tokens.
+ *
+ * Token naming follows MD3: --md-{role}
+ * TailwindCSS v4: uses @import instead of @tailwind directives.
+ */
+@import "tailwindcss";
+
+/* ── MD3 Light Theme tokens ──────────────────────────────────────── */
+:root {
+  /* Primary — Google Blue shade */
+  --md-primary: #1a73e8;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #d2e3fc;
+  --md-on-primary-container: #001d35;
+
+  /* Secondary */
+  --md-secondary: #4285f4;
+  --md-on-secondary: #ffffff;
+
+  /* Surface */
+  --md-surface: #fafafa;
+  --md-on-surface: #1c1b1f;
+  --md-on-surface-variant: #49454f;
+  --md-surface-container: #f3f4f6;
+  --md-surface-container-high: #ece6f0;
+
+  /* Outline */
+  --md-outline: #79747e;
+  --md-outline-variant: #cac4d0;
+
+  /* Typography */
+  --md-font-sans: 'Google Sans', 'Roboto', system-ui, sans-serif;
+  --md-font-mono: 'Roboto Mono', ui-monospace, monospace;
+
+  /* Elevation */
+  --md-shadow-1: 0 1px 2px rgba(0,0,0,0.1), 0 1px 3px 1px rgba(0,0,0,0.05);
+  --md-shadow-3: 0 4px 8px 3px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+
+  font-family: var(--md-font-sans);
+  color-scheme: light dark;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── MD3 Dark Theme tokens ───────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --md-primary: #8ab4f8;
+    --md-on-primary: #003258;
+    --md-primary-container: #004881;
+    --md-on-primary-container: #d2e3fc;
+
+    --md-secondary: #7baaf7;
+    --md-on-secondary: #003062;
+
+    --md-surface: #1c1b1f;
+    --md-on-surface: #e6e1e5;
+    --md-on-surface-variant: #cac4d0;
+    --md-surface-container: #211f26;
+    --md-surface-container-high: #2b2930;
+
+    --md-outline: #938f99;
+    --md-outline-variant: #49454f;
+
+    --md-shadow-1: 0 1px 2px rgba(0,0,0,0.35), 0 1px 3px 1px rgba(0,0,0,0.2);
+    --md-shadow-3: 0 4px 8px 3px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.25);
+  }
+}
+
+/* ── Base reset ──────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--md-surface);
+  color: var(--md-on-surface);
+  font-family: var(--md-font-sans);
+}
+
+#root {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Scrollbar styling ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--md-outline-variant);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--md-outline);
+}
