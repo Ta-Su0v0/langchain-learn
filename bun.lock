@@ -75,6 +75,9 @@
       "dependencies": {
         "@lcl/types": "workspace:*",
       },
+      "devDependencies": {
+        "vitest": "^4.1.2",
+      },
     },
     "tools/scripts": {
       "name": "@lcl/scripts",

@@ -3,10 +3,19 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "scripts": {
+    "test": "vitest run --config ./vitest.config.ts"
+  },
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./id": "./src/id/index.ts",
+    "./query-filter": "./src/query-filter/index.ts",
+    "./response": "./src/response/index.ts"
   },
   "dependencies": {
     "@lcl/types": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.2"
   }
 }
