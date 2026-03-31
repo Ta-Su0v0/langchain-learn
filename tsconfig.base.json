@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "ESNext",
-        "module": "ESNext",
+        "module": "Preserve",
         "lib": ["ESNext"],
         "useDefineForClassFields": true,
         "resolveJsonModule": true,

@@ -16,7 +16,8 @@
   },
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "build": "bun build ./src/index.ts --target=bun --outfile=./dist/index.js",
+    "build": "tsc -b --pretty false && bun build ./src/index.ts --target=bun --outfile=./dist/index.js",
+    "typecheck": "tsc -b --pretty false",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"

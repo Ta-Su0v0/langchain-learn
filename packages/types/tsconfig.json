@@ -6,9 +6,8 @@
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "outDir": "./.typecheck",
+    "outDir": "./dist",
     "rootDir": "./src",
-    "tsBuildInfoFile": "./.typecheck/tsconfig.tsbuildinfo"
   },
   "include": ["src"]
 }

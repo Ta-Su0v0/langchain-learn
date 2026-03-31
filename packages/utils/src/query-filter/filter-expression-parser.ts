@@ -126,7 +126,12 @@ function createDefaultExpression(rules: readonly FilterRule[]): FilterLispExpres
     return rules[0]?.id ?? ''
   }
 
-  return ['and', ...rules.map((rule) => rule.id)]
+  if (rules.length === 0) {
+    return ''
+  }
+
+  const ids = rules.map((rule) => rule.id)
+  return ['and', ids[0] as string, ids[1] as string, ...ids.slice(2)]
 }
 
 function parseOrExpression(cursor: TokenCursor, ruleIds: Set<string>): FilterLispExpression {
@@ -182,11 +187,20 @@ function collapseOperands(
   operator: FilterLogicalOperator,
   operands: FilterLispExpression[],
 ): FilterLispExpression {
-  if (operands.length === 1) {
-    return operands[0] ?? ''
+  if (operands.length === 0) {
+    return ''
   }
 
-  return [operator, operands[0], operands[1], ...operands.slice(2)]
+  if (operands.length === 1) {
+    return operands[0] as FilterLispExpression
+  }
+
+  return [
+    operator,
+    operands[0] as FilterLispExpression,
+    operands[1] as FilterLispExpression,
+    ...operands.slice(2),
+  ]
 }
 
 function matchToken(cursor: TokenCursor, expected: string): boolean {

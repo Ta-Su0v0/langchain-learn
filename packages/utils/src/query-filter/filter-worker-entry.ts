@@ -43,5 +43,5 @@ if (
   typeof workerGlobal.addEventListener === 'function' &&
   typeof workerGlobal.postMessage === 'function'
 ) {
-  attachQueryFilterWorker(workerGlobal)
+  attachQueryFilterWorker(workerGlobal as FilterWorkerHost)
 }

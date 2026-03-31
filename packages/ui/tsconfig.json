@@ -8,9 +8,8 @@
     "jsx": "react-jsx",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "noEmit": false,
-    "outDir": "./.typecheck",
+    "outDir": "./dist",
     "rootDir": "./src",
-    "tsBuildInfoFile": "./.typecheck/tsconfig.tsbuildinfo"
   },
   "include": ["src"]
 }
