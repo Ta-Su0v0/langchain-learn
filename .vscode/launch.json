@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Server: Bun API",
+      "type": "bun",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/server/src/index.ts",
+      "cwd": "${workspaceFolder}/apps/server",
+      "watchMode": "hot",
+      "stopOnEntry": false
+    },
+    {
+      "name": "Server: Attach Bun Inspector",
+      "type": "bun",
+      "request": "attach",
+      "url": "ws://localhost:6499/lcl-server",
+      "localRoot": "${workspaceFolder}/apps/server",
+      "remoteRoot": "${workspaceFolder}/apps/server"
+    },
+    {
+      "name": "Client: Chrome",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://192.168.64.2:5173",
+      "webRoot": "${workspaceFolder}/apps/client",
+      "preLaunchTask": "client:dev",
+      "sourceMaps": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full Stack: Server + Client",
+      "configurations": ["Server: Bun API", "Client: Chrome"],
+      "stopAll": true
+    }
+  ]
+}

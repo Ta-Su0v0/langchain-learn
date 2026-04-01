@@ -16,6 +16,7 @@
   },
   "scripts": {
     "dev": "bun run --hot src/index.ts",
+    "debug": "bun --inspect-wait=localhost:6499/lcl-server --hot src/index.ts",
     "build": "tsc -b --pretty false && bun build ./src/index.ts --target=bun --outfile=./dist/index.js",
     "typecheck": "tsc -b --pretty false",
     "db:generate": "drizzle-kit generate",

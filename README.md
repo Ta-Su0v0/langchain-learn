@@ -94,6 +94,65 @@ bun run dev
 - Server: [http://localhost:3000](http://localhost:3000)
 - Health Check: [http://localhost:3000/api/v1/health](http://localhost:3000/api/v1/health)
 
+## Debugger
+
+### VS Code
+
+仓库已经提供可直接使用的 VS Code 调试配置：
+
+- `Server: Bun API`
+- `Server: Attach Bun Inspector`
+- `Client: Chrome`
+- `Full Stack: Server + Client`
+
+使用前请安装推荐扩展 `oven.bun-vscode`。
+
+说明：
+
+- `Server: Bun API` 会直接以 Bun 扩展启动 `apps/server/src/index.ts`
+- `Client: Chrome` 会先启动 `apps/client` 的 Vite dev server，再拉起浏览器调试
+- `Full Stack: Server + Client` 会同时启动前后端调试
+- `Server: Attach Bun Inspector` 用于附加到 `bun run debug` 启动的服务端 Inspector
+
+### Zed
+
+仓库已经补齐 Zed 本地调试配置，入口位于 `.zed/debug.json`：
+
+- `Server: Bun API`
+- `Client: Chrome (Vite)`
+- `Client: Attach Chrome (9222)`
+
+配套运行任务位于 `.zed/tasks.json`：
+
+- `server:dev`
+- `server:debug`
+- `client:dev`
+
+建议用法：
+
+- 先运行 `client:dev`，再启动 `Client: Chrome (Vite)`
+- 调服务端时直接启动 `Server: Bun API`
+- 如果要用 Bun 官方 Inspector，运行 `server:debug`
+- 当前配置按 `workspace` 容器地址 `192.168.64.2` 预设浏览器调试 URL 和前端 API 基址；如果容器 IP 变化，需要同步更新 `.zed/debug.json`、`.zed/tasks.json` 和 `.vscode/tasks.json`
+
+补充说明：
+
+- Zed 当前内置的 JavaScript 调试器是 `vscode-js-debug`，主要覆盖 `node` / `chrome` 场景
+- `Bun Inspector attach` 仍建议走 Bun 官方 Web Debugger，而不是在 Zed 里伪造一个不兼容的 attach 配置
+
+### Bun Web Debugger
+
+如果你要调试服务端运行时本身，官方推荐使用 Bun Inspector：
+
+```bash
+cd apps/server
+bun run debug
+```
+
+然后在浏览器打开：
+
+- [https://debug.bun.sh/#localhost:6499/lcl-server](https://debug.bun.sh/#localhost:6499/lcl-server)
+
 ## 根目录常用脚本
 
 以下命令统一在根目录执行：

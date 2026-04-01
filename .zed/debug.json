@@ -1,0 +1,33 @@
+[
+  {
+    "adapter": "JavaScript",
+    "label": "Server: Bun API",
+    "type": "node",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/apps/server/src/index.ts",
+    "cwd": "$ZED_WORKTREE_ROOT/apps/server",
+    "runtimeExecutable": "bun",
+    "runtimeArgs": ["--hot"],
+    "console": "integratedTerminal",
+    "skipFiles": ["<node_internals>/**"]
+  },
+  {
+    "adapter": "JavaScript",
+    "label": "Client: Chrome (Vite)",
+    "type": "chrome",
+    "request": "launch",
+    "url": "http://192.168.64.2:5173",
+    "webRoot": "$ZED_WORKTREE_ROOT/apps/client",
+    "console": "integratedTerminal",
+    "skipFiles": ["<node_internals>/**"]
+  },
+  {
+    "adapter": "JavaScript",
+    "label": "Client: Attach Chrome (9222)",
+    "type": "chrome",
+    "request": "attach",
+    "port": 9222,
+    "webRoot": "$ZED_WORKTREE_ROOT/apps/client",
+    "skipFiles": ["<node_internals>/**"]
+  }
+]

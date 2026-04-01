@@ -1,0 +1,32 @@
+[
+  {
+    "label": "server:dev",
+    "command": "bun",
+    "args": ["--hot", "src/index.ts"],
+    "cwd": "$ZED_WORKTREE_ROOT/apps/server",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "server:debug",
+    "command": "bun",
+    "args": ["run", "debug"],
+    "cwd": "$ZED_WORKTREE_ROOT/apps/server",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "client:dev",
+    "command": "bun",
+    "args": ["run", "dev", "--", "--host", "0.0.0.0"],
+    "cwd": "$ZED_WORKTREE_ROOT/apps/client",
+    "env": {
+      "VITE_API_BASE_URL": "http://192.168.64.2:3000/api/v1"
+    },
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  }
+]

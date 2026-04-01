@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "client:dev",
+      "type": "shell",
+      "command": "bun run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/apps/client",
+        "env": {
+          "VITE_API_BASE_URL": "http://192.168.64.2:3000/api/v1"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "debug"
+      },
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^(.*)$",
+          "message": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\s*VITE\\s+v",
+          "endsPattern": "Local:\\s+http://localhost:5173/?"
+        }
+      }
+    }
+  ]
+}
