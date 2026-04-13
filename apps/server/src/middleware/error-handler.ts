@@ -1,6 +1,7 @@
 import type { Context, Next } from 'hono'
 
-import type { ApiError } from '@lcl/types'
+import { ApiCode } from '@lcl/shared/types'
+import { createErrorResponse } from '@lcl/shared/utils'
 
 /**
  * Global error handler middleware.
@@ -13,11 +14,8 @@ export async function errorHandler(c: Context, next: Next): Promise<Response> {
   } catch (err) {
     console.error('[ErrorHandler]', err)
 
-    const apiError: ApiError = {
-      code: 'INTERNAL_SERVER_ERROR',
-      message: err instanceof Error ? err.message : 'An unexpected error occurred',
-    }
+    const message = err instanceof Error ? err.message : 'An unexpected error occurred'
 
-    return c.json({ status: 'error', error: apiError }, 500)
+    return c.json(createErrorResponse(ApiCode.InternalServerError, message), 500)
   }
 }

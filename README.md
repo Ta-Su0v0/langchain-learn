@@ -6,7 +6,7 @@
 
 - Web Client：React 19 + Vite 8 + Tailwind CSS v4
 - API Server：Bun + Hono + Zod + Drizzle ORM
-- Shared Contracts：`@lcl/types`、`@lcl/utils`
+- Shared Contracts：`@lcl/shared/types`、`@lcl/shared/utils`
 - Monorepo Tooling：Bun Workspaces + Turbo + TypeScript solution-style + OXC
 
 当前聊天链路仍是持久化 + stub 回复，LangChain / Google 相关依赖已就位，但尚未接入真实模型调用。
@@ -18,8 +18,7 @@ apps/
   client/         React 前端应用
   server/         Bun API 服务
 packages/
-  types/          前后端共享类型与 API 契约
-  utils/          共享响应封装与工具函数
+  shared/         单一事实来源，承载共享 schema、类型与工具
   ui/             预留 UI 组件包（当前入口仍为占位）
 tools/
   scripts/        预留仓库级脚本 workspace
@@ -27,8 +26,8 @@ tools/
 
 ## 技术栈
 
-- Package Manager: Bun `1.3.11`
-- Engine Constraint: Node `24.x` + Bun `>=1.3.11`
+- Package Manager: Bun `1.3.12`
+- Engine Constraint: Node `24.x` + Bun `>=1.3.12`
 - Build Orchestration: Turbo
 - TypeScript Layout: root solution-style + `tsconfig.base.json`
 - Lint / Format: OXLint + OXFmt
@@ -162,7 +161,7 @@ bun run dev         # turbo run dev
 bun run build       # turbo run build
 bun run test        # turbo run test
 bun run typecheck   # tsc -b --pretty false
-bun run fix         # oxfmt . && oxlint . --fix
+bun run lint        # oxfmt . && oxlint . --fix
 ```
 
 说明：
@@ -188,13 +187,12 @@ bun run fix         # oxfmt . && oxlint . --fix
 - 负责环境变量读取、CORS、中间件、Drizzle 持久化
 - 当前 `chat.service.ts` 仍返回 stub 回复，并把会话写入 Postgres
 
-### `packages/types`
+### `packages/shared`
 
-- 定义 API 响应结构、聊天消息契约、长度限制等共享类型
-
-### `packages/utils`
-
-- 提供 `createSuccessResponse`、`createErrorResponse`、`generateId`
+- 当前仓库的单一事实来源（Single Source of Truth）
+- `@lcl/shared/types` 承载共享 Zod schema、从 schema 派生的类型、常量与 API 响应契约
+- `@lcl/shared/utils` 承载共享工具函数，包括响应封装、`generateId` 和 `query-filter`
+- `packages/shared/tests/**/*.test.ts` 是当前已提交共享测试的主位置
 
 ### `packages/ui`
 
@@ -209,6 +207,7 @@ bun run fix         # oxfmt . && oxlint . --fix
 
 - 根 `tsconfig.json` 为 solution-style 聚合入口
 - 共享编译选项位于 `tsconfig.base.json`
+- `packages/shared` 通过子路径导出共享能力，推荐入口为 `@lcl/shared/types` 和 `@lcl/shared/utils`
 - 前端浏览器类型在 `apps/client/tsconfig.json` 中显式声明
 - Turbo 会对 `bun.lock`、`package.json`、`tsconfig.json`、`tsconfig.base.json` 变化触发缓存失效
 

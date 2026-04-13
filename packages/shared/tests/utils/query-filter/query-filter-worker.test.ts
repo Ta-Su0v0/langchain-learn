@@ -1,12 +1,15 @@
 import { describe, expect, it } from 'vitest'
 
-import { attachQueryFilterWorker, handleQueryFilterWorkerRequest } from '../../src/query-filter'
+import {
+  attachQueryFilterWorker,
+  handleQueryFilterWorkerRequest,
+} from '../../../src/utils/query-filter'
 import type {
   DataItem,
   FilterRule,
   FilterWorkerRequest,
   FilterWorkerResponse,
-} from '../../src/query-filter'
+} from '../../../src/utils/query-filter'
 
 interface PersonRecord extends DataItem {
   age?: number | string | null

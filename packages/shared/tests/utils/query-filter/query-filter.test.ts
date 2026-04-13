@@ -1,7 +1,11 @@
 import { describe, expect, it } from 'vitest'
 
-import { filterDataset, parseStringToLisp, parseTokensToLisp } from '../../src/query-filter'
-import type { DataItem, FilterLispExpression, FilterRule } from '../../src/query-filter'
+import {
+  filterDataset,
+  parseStringToLisp,
+  parseTokensToLisp,
+} from '../../../src/utils/query-filter'
+import type { DataItem, FilterLispExpression, FilterRule } from '../../../src/utils/query-filter'
 
 interface PersonRecord extends DataItem {
   age?: number | string | null

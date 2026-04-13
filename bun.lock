@@ -8,7 +8,7 @@
         "@types/bun": "^1.3.12",
         "oxfmt": "^0.44.0",
         "oxlint": "^1.59.0",
-        "turbo": "^2.8.20",
+        "turbo": "^2.9.6",
         "typescript": "6.0.2",
       },
     },
@@ -16,9 +16,8 @@
       "name": "@lcl/client",
       "version": "0.0.0",
       "dependencies": {
-        "@lcl/types": "workspace:*",
+        "@lcl/shared": "workspace:*",
         "@lcl/ui": "workspace:*",
-        "@lcl/utils": "workspace:*",
         "react": "^19.2.5",
         "react-dom": "^19.2.5",
       },
@@ -42,8 +41,7 @@
         "@hono/zod-validator": "^0.7.6",
         "@langchain/core": "^1.1.36",
         "@langchain/google": "^0.1.8",
-        "@lcl/types": "workspace:*",
-        "@lcl/utils": "workspace:*",
+        "@lcl/shared": "workspace:*",
         "drizzle-orm": "^0.45.2",
         "hono": "^4.12.12",
         "langchain": "^1.2.37",
@@ -54,9 +52,15 @@
         "drizzle-kit": "^0.31.1",
       },
     },
-    "packages/types": {
-      "name": "@lcl/types",
+    "packages/shared": {
+      "name": "@lcl/shared",
       "version": "0.0.0",
+      "dependencies": {
+        "zod": "^4.3.6",
+      },
+      "devDependencies": {
+        "vitest": "^4.1.4",
+      },
     },
     "packages/ui": {
       "name": "@lcl/ui",
@@ -68,16 +72,6 @@
       "peerDependencies": {
         "react": "^19.2.4",
         "react-dom": "^19.2.4",
-      },
-    },
-    "packages/utils": {
-      "name": "@lcl/utils",
-      "version": "0.0.0",
-      "dependencies": {
-        "@lcl/types": "workspace:*",
-      },
-      "devDependencies": {
-        "vitest": "^4.1.2",
       },
     },
     "tools/scripts": {
@@ -236,11 +230,9 @@
 
     "@lcl/server": ["@lcl/server@workspace:apps/server"],
 
-    "@lcl/types": ["@lcl/types@workspace:packages/types"],
+    "@lcl/shared": ["@lcl/shared@workspace:packages/shared"],
 
     "@lcl/ui": ["@lcl/ui@workspace:packages/ui"],
-
-    "@lcl/utils": ["@lcl/utils@workspace:packages/utils"],
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.1.3", "", { "dependencies": { "@tybys/wasm-util": "^0.10.1" }, "peerDependencies": { "@emnapi/core": "^1.7.1", "@emnapi/runtime": "^1.7.1" } }, "sha512-xK9sGVbJWYb08+mTJt3/YV24WxvxpXcXtP6B172paPZ+Ts69Re9dAr7lKwJoeIx8OoeuimEiRZ7umkiUVClmmQ=="],
 

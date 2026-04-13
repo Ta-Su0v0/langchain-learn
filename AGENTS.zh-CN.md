@@ -5,8 +5,7 @@
 
 - `apps/client`：React 19 + Vite 前端，源码位于 `src/`，静态资源在 `src/assets/`
 - `apps/server`：Bun + Hono API 服务，源码位于 `src/`，Drizzle 配置在 `drizzle.config.ts`
-- `packages/types`：前后端共享类型与接口契约
-- `packages/utils`：通用工具函数，也是当前已提交测试的主要位置
+- `packages/shared`：共享 schema、类型、常量和工具函数的单一事实来源
 - `packages/ui`：共享 UI 包，目前内容较少
 
 ## 构建、测试与开发命令
@@ -27,7 +26,9 @@
 React 组件使用 `PascalCase`，如 `App.tsx`、`Button.tsx`；变量和函数使用 `camelCase`；工具模块文件名使用 `kebab-case`，如 `response-factory.ts`、`id-generator.ts`。优先保持数据不可变，并在边界层校验所有外部输入。
 
 ## 测试规范
-新功能和缺陷修复优先采用测试驱动方式。当前测试框架为 Vitest，已提交测试主要位于 `packages/utils/tests/**/*.test.ts`。新增测试请沿用 `*.test.ts` 或 `*.test.tsx` 命名。
+新功能和缺陷修复优先采用测试驱动方式。当前测试框架为 Vitest，已提交测试主要位于 `packages/shared/tests/**/*.test.ts`。新增测试请沿用 `*.test.ts` 或 `*.test.tsx` 命名。
+
+涉及前后端共享契约时，把运行时 schema 和由 schema 派生的 TypeScript 类型统一放在 `packages/shared/src/types`，通过 `@lcl/shared/types` 使用；共享工具函数统一放在 `packages/shared/src/utils`，通过 `@lcl/shared/utils` 使用。
 
 所有行为变更都应补充测试，目标是受影响代码覆盖率不低于 80%。提交 PR 前至少运行一次 `bun run test`；本地迭代时可进入对应 workspace 单独执行测试。
 

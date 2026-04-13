@@ -4,8 +4,13 @@
  *
  * TDD NOTE: See __tests__/chat.service.test.ts for test coverage.
  */
-import type { ChatMessage, ChatSession, SendMessageRequest, SendMessageResponse } from '@lcl/types'
-import { generateId } from '@lcl/utils'
+import type {
+  ChatMessage,
+  ChatSession,
+  SendMessageRequest,
+  SendMessageResponse,
+} from '@lcl/shared/types'
+import { generateId } from '@lcl/shared/utils'
 import { asc, eq } from 'drizzle-orm'
 
 import { db } from '../db/index.js'
@@ -22,7 +27,7 @@ function toIso(value: Date | string): string {
 export async function sendMessage(request: SendMessageRequest): Promise<SendMessageResponse> {
   const sessionId = request.sessionId ?? generateId()
   const now = new Date()
-  const nowIso = now.toISOString()
+  const createdAt = now.toISOString()
   const session = await db
     .select()
     .from(chatSessions)
@@ -33,7 +38,7 @@ export async function sendMessage(request: SendMessageRequest): Promise<SendMess
     id: generateId(),
     role: 'user',
     content: request.content,
-    createdAt: nowIso,
+    createdAt,
   }
 
   // TODO: Replace with LangChain call
@@ -41,7 +46,7 @@ export async function sendMessage(request: SendMessageRequest): Promise<SendMess
     id: generateId(),
     role: 'assistant',
     content: `[LangChain stub] You said: "${request.content}"`,
-    createdAt: nowIso,
+    createdAt,
   }
 
   await db.transaction(async (tx) => {

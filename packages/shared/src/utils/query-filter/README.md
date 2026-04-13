@@ -1,6 +1,6 @@
 # Query Filter
 
-`query-filter` 是 `@lcl/utils` 里的前端数据筛选模块，主入口方法是 `filterDataset`。
+`query-filter` 是 `@lcl/shared/utils/query-filter` 里的前端数据筛选模块，主入口方法是 `filterDataset`。
 
 它支持：
 
@@ -90,7 +90,7 @@ interface FilterRule {
 ### 同步筛选
 
 ```ts
-import { filterDataset } from '@lcl/utils'
+import { filterDataset } from '@lcl/shared/utils/query-filter'
 
 const data = [
   { id: 1, name: 'Alice', status: 'active', age: 29 },
@@ -110,7 +110,7 @@ const result = filterDataset(data, rules, '(ACTIVE OR NAME_ALI) AND AGE_GT_20')
 ### Worker 调用
 
 ```ts
-import { createQueryFilterWorkerClient } from '@lcl/utils/src/query-filter'
+import { createQueryFilterWorkerClient } from '@lcl/shared/utils/query-filter'
 
 const client = createQueryFilterWorkerClient<{ id: number; name: string; status: string; age: number }>()
 
@@ -148,4 +148,4 @@ client.terminate()
 
 可参考同目录下的 `usage-example.ts`：
 
-- [usage-example.ts](/Users/tindu/Developer/Code/ai-learn/langchain-learn/packages/utils/src/query-filter/usage-example.ts)
+- [usage-example.ts](/Users/tindu/Developer/workspace/personal/langchain-learn/packages/shared/src/utils/query-filter/usage-example.ts)

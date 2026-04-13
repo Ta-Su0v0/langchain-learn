@@ -2,7 +2,7 @@
  * MessageBubble — renders a single chat message.
  * Pure display component; no local state.
  */
-import type { ChatMessage } from '@lcl/types'
+import type { ChatMessage } from '@lcl/shared/types'
 
 interface MessageBubbleProps {
   message: ChatMessage

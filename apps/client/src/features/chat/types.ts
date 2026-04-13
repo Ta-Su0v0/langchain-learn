@@ -1,8 +1,8 @@
 /**
  * Chat feature types.
- * Keep feature-local types here; shared types live in @lcl/types.
+ * Keep feature-local types here; shared types live in @lcl/shared/types.
  */
-import type { ChatMessage, ChatSession } from '@lcl/types'
+import type { ChatMessage, ChatSession } from '@lcl/shared/types'
 
 export type { ChatMessage, ChatSession }
 

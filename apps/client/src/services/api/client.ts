@@ -2,13 +2,22 @@
  * Client API service — base HTTP client.
  * All server communication goes through this layer.
  */
-import type { ApiResponse, ApiError } from '@lcl/types'
+import {
+  ApiCode,
+  apiErrorResponseSchema,
+  type ApiErrorResponse,
+  type ApiSuccessResponse,
+} from '@lcl/shared/types'
+
+interface ResponseParser<T> {
+  parse(input: unknown): T
+}
 
 const API_BASE_URL = import.meta.env['VITE_API_BASE_URL'] ?? '/api/v1'
 
 class ApiClientError extends Error {
   constructor(
-    public readonly code: string,
+    public readonly code: ApiErrorResponse['code'],
     message: string,
     public readonly status: number,
   ) {
@@ -17,7 +26,11 @@ class ApiClientError extends Error {
   }
 }
 
-async function request<T>(path: string, options?: RequestInit): Promise<ApiResponse<T>> {
+async function request<T>(
+  path: string,
+  parser: ResponseParser<ApiSuccessResponse<T>>,
+  options?: RequestInit,
+): Promise<ApiSuccessResponse<T>> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
     headers: {
       'Content-Type': 'application/json',
@@ -26,19 +39,37 @@ async function request<T>(path: string, options?: RequestInit): Promise<ApiRespo
     ...options,
   })
 
+  const payload = await response.json()
+
   if (!response.ok) {
-    const error = (await response.json()) as { error: ApiError }
-    throw new ApiClientError(error.error.code, error.error.message, response.status)
+    const error = apiErrorResponseSchema.safeParse(payload)
+
+    if (error.success) {
+      throw new ApiClientError(error.data.code, error.data.message, response.status)
+    }
+
+    throw new ApiClientError(
+      ApiCode.InternalServerError,
+      'Unexpected API error response',
+      response.status,
+    )
   }
 
-  return response.json() as Promise<ApiResponse<T>>
+  return parser.parse(payload)
 }
 
 export const apiClient = {
-  get: <T>(path: string): Promise<ApiResponse<T>> => request<T>(path, { method: 'GET' }),
+  get: <T>(
+    path: string,
+    parser: ResponseParser<ApiSuccessResponse<T>>,
+  ): Promise<ApiSuccessResponse<T>> => request<T>(path, parser, { method: 'GET' }),
 
-  post: <T>(path: string, body: unknown): Promise<ApiResponse<T>> =>
-    request<T>(path, {
+  post: <T>(
+    path: string,
+    body: unknown,
+    parser: ResponseParser<ApiSuccessResponse<T>>,
+  ): Promise<ApiSuccessResponse<T>> =>
+    request<T>(path, parser, {
       method: 'POST',
       body: JSON.stringify(body),
     }),

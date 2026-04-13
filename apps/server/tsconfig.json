@@ -10,7 +10,6 @@
   },
   "include": ["src", "drizzle.config.ts"],
   "references": [
-    { "path": "../../packages/types" },
-    { "path": "../../packages/utils" }
+    { "path": "../../packages/shared" }
   ]
 }

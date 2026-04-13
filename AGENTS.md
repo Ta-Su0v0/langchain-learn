@@ -5,8 +5,7 @@ This repository is a Bun workspace monorepo orchestrated with Turbo. Code lives 
 
 - `apps/client`: React 19 + Vite frontend (`src/`, assets in `src/assets/`)
 - `apps/server`: Bun + Hono API server (`src/`, Drizzle config in `drizzle.config.ts`)
-- `packages/types`: shared API and chat contracts
-- `packages/utils`: shared helpers and the committed test suite
+- `packages/shared`: single source of truth for shared schemas, types, constants, and utilities
 - `packages/ui`: shared UI package, currently minimal
 
 ## Build, Test, and Development Commands
@@ -27,7 +26,9 @@ Use TypeScript throughout. Follow the existing style: 2-space indentation, singl
 Use `PascalCase` for React components (`App.tsx`, `Button.tsx`), `camelCase` for variables and functions, and `kebab-case` for utility modules (`response-factory.ts`, `id-generator.ts`). Prefer new objects over mutation, and validate all external input at the boundary layer.
 
 ## Testing Guidelines
-Prefer test-driven changes for new features and bug fixes. Existing tests use Vitest and are currently concentrated in `packages/utils/tests/**/*.test.ts`. Follow the same `*.test.ts` or `*.test.tsx` naming pattern.
+Prefer test-driven changes for new features and bug fixes. Existing tests use Vitest and are currently concentrated in `packages/shared/tests/**/*.test.ts`. Follow the same `*.test.ts` or `*.test.tsx` naming pattern.
+
+When adding or changing cross-app contracts, put the runtime schema and derived TypeScript types in `packages/shared/src/types` and consume them via `@lcl/shared/types`. Put shared helpers in `packages/shared/src/utils` and consume them via `@lcl/shared/utils`.
 
 Add tests for every behavior change and target at least 80% coverage on touched code. Run `bun run test` before opening a PR; use workspace-level commands when iterating locally.
 

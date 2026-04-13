@@ -4,7 +4,7 @@
  */
 import { useState, useRef, type KeyboardEvent } from 'react'
 
-import { MAX_MESSAGE_LENGTH } from '@lcl/types'
+import { MAX_MESSAGE_LENGTH } from '@lcl/shared/types'
 
 interface ChatInputProps {
   onSend: (content: string) => void
