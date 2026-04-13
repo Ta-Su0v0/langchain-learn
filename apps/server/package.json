@@ -8,8 +8,8 @@
     "@langchain/google": "^0.1.8",
     "@lcl/types": "workspace:*",
     "@lcl/utils": "workspace:*",
-    "drizzle-orm": "^0.42.0",
-    "hono": "^4.6.10",
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.12.12",
     "langchain": "^1.2.37",
     "postgres": "^3.4.5",
     "zod": "^4.3.6"
