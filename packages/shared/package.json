@@ -8,9 +8,7 @@
     "./types/api": "./src/types/api.ts",
     "./types/chat": "./src/types/chat.ts",
     "./utils": "./src/utils/index.ts",
-    "./utils/id": "./src/utils/id.ts",
-    "./utils/query-filter": "./src/utils/query-filter/index.ts",
-    "./utils/response": "./src/utils/response.ts"
+    "./utils/id": "./src/utils/id.ts"
   },
   "scripts": {
     "typecheck": "tsc -b --pretty false",

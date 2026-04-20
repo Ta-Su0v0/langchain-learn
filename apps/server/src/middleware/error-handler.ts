@@ -1,7 +1,7 @@
 import type { Context, Next } from 'hono'
 
 import { ApiCode } from '@lcl/shared/types'
-import { createErrorResponse } from '@lcl/shared/utils'
+import { createErrorResponse } from '@/utils/response'
 
 /**
  * Global error handler middleware.

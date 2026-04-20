@@ -3,7 +3,7 @@ import {
   type ApiErrorCode,
   type ApiErrorResponse,
   type ApiSuccessResponse,
-} from '../types'
+} from '@lcl/shared/types/api'
 
 export function createSuccessResponse<T>(data: T, message = 'OK'): ApiSuccessResponse<T> {
   return {

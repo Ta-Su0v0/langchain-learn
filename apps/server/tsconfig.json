@@ -6,10 +6,13 @@
     "moduleResolution": "bundler",
     "types": ["bun"],
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    "jsxImportSource": "hono/jsx",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
   },
   "include": ["src", "drizzle.config.ts"],
   "references": [
-    { "path": "../../packages/shared" }
+    { "path": "../../packages/shared", }
   ]
 }

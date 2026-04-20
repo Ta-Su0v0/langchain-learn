@@ -23,7 +23,6 @@ app.route('/api/v1', apiRouter)
 
 // ── Root ──────────────────────────────────────────────────────────
 app.get('/', (c) => c.json({ name: 'langchain-learn-api', version: '0.1.0' }))
-
 console.warn(`[Server] Listening on http://localhost:${env.PORT}`)
 
 export default {
